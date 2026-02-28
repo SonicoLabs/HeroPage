@@ -53,11 +53,11 @@
     // Action
     "action.tag": "En accion",
     "action.title": "Así se ve Sonico<br>por dentro",
-    "action.subtitle": "Una muestra de lo que encontrarás: lecciones interactivas, tu perfil de artista y el foro de empleo musical.",
+    "action.subtitle": "Una muestra de lo que encontrarás: lecciones interactivas, tu asistente de IA Neuronote y el foro de comunidad y empleo musical.",
     "action.img.lessonsLanding": "Lecciones",
     "action.img.lessonsCategoriesGrid": "Categorías de las lecciones",
     "action.img.communityLanding": "Foro de comunidad",
-    "action.img.neuronoteChat": "Neuronote chat",
+    "action.img.neuronoteChat": "IA Neuronote chat",
 
     // FAQ
     "faq.tag": "FAQ",
