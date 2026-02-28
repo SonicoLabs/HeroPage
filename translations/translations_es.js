@@ -2,6 +2,7 @@
     // Nav
     "nav.features": "Qué es",
     "nav.howItWorks": "Cómo funciona",
+    "nav.action": "En acción",
     "nav.faq": "FAQ",
     "nav.cta": "Únete a la beta",
 
@@ -48,6 +49,15 @@
     "steps.s3.body": "Sigue tus lecciones, explora el foro de empleo, busca músicos para colaborar o prepara tus clases como docente. Tu perfil de artista se va construyendo solo conforme avanzas.",
     "steps.s4.title": "Encuentra tu escenario",
     "steps.s4.body": "Cuando estés listo —o aunque creas que no lo estás aún—, usa tu perfil para aplicar a oportunidades reales. Sonico te ayuda a llegar al escenario que mereces.",
+
+    // Action
+    "action.tag": "En accion",
+    "action.title": "Así se ve Sonico<br>por dentro",
+    "action.subtitle": "Una muestra de lo que encontrarás: lecciones interactivas, tu perfil de artista y el foro de empleo musical.",
+    "action.img.lessonsLanding": "Lecciones",
+    "action.img.lessonsCategoriesGrid": "Categorías de las lecciones",
+    "action.img.communityLanding": "Foro de comunidad",
+    "action.img.neuronoteChat": "Neuronote chat",
 
     // FAQ
     "faq.tag": "FAQ",

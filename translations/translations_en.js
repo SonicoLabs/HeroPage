@@ -2,6 +2,7 @@
     // Nav
     "nav.features": "What is it",
     "nav.howItWorks": "How it works",
+    "nav.action": "In action",
     "nav.faq": "FAQ",
     "nav.cta": "Join the beta",
 
@@ -49,6 +50,15 @@
     "steps.s4.title": "Find your stage",
     "steps.s4.body": "When you're ready — or even when you think you're not — use your profile to apply for real opportunities. Sonico helps you reach the stage you deserve.",
 
+    // Action
+    "action.tag": "In action",
+    "action.title": "Take a peak<br>inside Sonico",
+    "action.subtitle": "A sample of what you'll find: interactive lessons, your artist profile, and the music job forum.",
+    "action.img.lessonsLanding": "Lessons landing",
+    "action.img.lessonsCategoriesGrid": "Lesson's categories grid ",
+    "action.img.communityLanding": "Community landing",
+    "action.img.neuronoteChat": "Neuronote chat",    
+    
     // FAQ
     "faq.tag": "FAQ",
     "faq.title": "Frequently asked<br>questions",
