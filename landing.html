@@ -219,78 +219,9 @@
       transition: border-color 0.3s, transform 0.3s;
     }
     .feature-card:hover { border-color: rgba(124, 77, 255, 0.45); transform: translateY(-4px); }
-    .feature-icon {
-      width: 52px; height: 52px; border-radius: 12px;
-      background: rgba(124, 77, 255, 0.15);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 24px; margin-bottom: 20px;
-    }
     .feature-card h3 { font-family: var(--font-display); font-size: 20px; font-weight: 700; margin-bottom: 10px; }
     .feature-card p { color: var(--color-muted); font-size: 15px; }
-
-    /* =====================================================
-       SECCIÓN PREVIEW (vídeo + fotos)
-    ===================================================== */
-    .preview-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      align-items: start;
-    }
-    .preview-video {
-      border-radius: var(--radius); overflow: hidden;
-      border: 1px solid var(--color-border);
-      background: var(--color-surface);
-      aspect-ratio: 16/9;
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-    }
-    /* Sustituye el contenido de .preview-video por este iframe cuando tengas el vídeo:
-       <iframe src="https://www.youtube.com/embed/TU_VIDEO_ID?rel=0"
-               title="Sonico en acción" allowfullscreen
-               style="width:100%;height:100%;border:none;"></iframe>           */
-    .preview-video iframe { width: 100%; height: 100%; border: none; }
-    .video-placeholder {
-      display: flex; flex-direction: column; align-items: center;
-      justify-content: center; gap: 16px;
-      color: var(--color-muted); font-size: 14px; text-align: center;
-      padding: 24px; width: 100%; height: 100%;
-    }
-    .play-btn {
-      width: 64px; height: 64px; border-radius: 50%;
-      border: 2px solid var(--color-main);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px; color: var(--color-main);
-      transition: background 0.2s, transform 0.2s; cursor: pointer;
-    }
-    .play-btn:hover { background: rgba(124, 77, 255, 0.15); transform: scale(1.08); }
-    .preview-images { display: grid; grid-template-rows: 1fr 1fr; gap: 20px; }
-    .preview-img {
-      border-radius: var(--radius); overflow: hidden;
-      border: 1px solid var(--color-border);
-      background: var(--color-surface);
-      aspect-ratio: 16/9;
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-    }
-    /* Sustituye div.img-placeholder por <img src="..." alt="..."> cuando tengas capturas reales */
-    .preview-img img { width: 100%; height: 100%; object-fit: cover; }
-    .img-placeholder {
-      display: flex; flex-direction: column; align-items: center;
-      justify-content: center; gap: 8px;
-      color: var(--color-muted); font-size: 13px; text-align: center;
-      padding: 16px; width: 100%;
-    }
-    .img-placeholder span { font-size: 28px; opacity: 0.5; }
-    .preview-label {
-      position: absolute; bottom: 14px; left: 14px;
-      background: rgba(11,12,14,0.75); backdrop-filter: blur(8px);
-      border: 1px solid var(--color-border); border-radius: 30px;
-      padding: 5px 14px; font-size: 12px;
-      font-family: var(--font-display); font-weight: 600;
-      color: var(--color-secondary); letter-spacing: 0.05em;
-    }
-
+    
     /* =====================================================
        PASOS
     ===================================================== */
@@ -308,30 +239,6 @@
     }
     .step-content h3 { font-family: var(--font-display); font-size: 22px; font-weight: 700; margin-bottom: 10px; }
     .step-content p { color: var(--color-muted); font-size: 16px; }
-
-    /* =====================================================
-       TESTIMONIOS
-    ===================================================== */
-    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-    .testimonial {
-      background: var(--color-surface); border: 1px solid var(--color-border);
-      border-radius: var(--radius); padding: 32px; transition: border-color 0.3s;
-    }
-    .testimonial:hover { border-color: rgba(124, 77, 255, 0.3); }
-    .testimonial-quote {
-      font-size: 16px; line-height: 1.7; color: var(--color-text);
-      margin-bottom: 24px; font-style: italic; font-weight: 300;
-    }
-    .testimonial-author { display: flex; align-items: center; gap: 14px; }
-    .author-avatar {
-      width: 44px; height: 44px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--color-main), var(--color-secondary));
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-display); font-weight: 700; font-size: 16px;
-      color: #0b0c0e; flex-shrink: 0;
-    }
-    .author-name { font-family: var(--font-display); font-weight: 600; font-size: 15px; }
-    .author-role { color: var(--color-muted); font-size: 13px; }
 
     /* =====================================================
        FAQ
@@ -422,7 +329,6 @@
       <ul class="nav-links">
         <li><a href="#que-es">Qué es</a></li>
         <li><a href="#como-funciona">Cómo funciona</a></li>
-        <li><a href="#en-accion">En acción</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contacto" class="btn btn-primary nav-cta">Únete a la beta</a></li>
       </ul>
@@ -436,7 +342,6 @@
     <span class="mobile-close" id="mobileClose">✕</span>
     <a href="#que-es" class="mobile-link">Qué es</a>
     <a href="#como-funciona" class="mobile-link">Cómo funciona</a>
-    <a href="#en-accion" class="mobile-link">En acción</a>
     <a href="#faq" class="mobile-link">FAQ</a>
     <a href="#contacto" class="btn btn-primary">Únete a la beta</a>
   </div>
@@ -572,106 +477,6 @@
           <div class="step-content">
             <h3>Encuentra tu escenario</h3>
             <p>Cuando estés listo —o aunque creas que no lo estás aún—, usa tu perfil para aplicar a oportunidades reales. Sonico te ayuda a llegar al escenario que mereces.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EN ACCIÓN (vídeo + fotos) -->
-  <section class="section" id="en-accion">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="tag">En acción</span>
-        <h2>Así se ve Sonico<br>por dentro</h2>
-        <p>Una muestra de lo que encontrarás: lecciones interactivas, tu perfil de artista y el foro de empleo musical.</p>
-      </div>
-      <div class="preview-layout reveal">
-
-        <!-- VIDEO PRINCIPAL
-             Cuando tengas el vídeo listo, sustituye todo el div.video-placeholder
-             por este iframe (YouTube):
-             <iframe src="https://www.youtube.com/embed/TU_VIDEO_ID?rel=0"
-                     title="Sonico en acción" allowfullscreen
-                     style="width:100%;height:100%;border:none;"></iframe>
-             O para Vimeo:
-             <iframe src="https://player.vimeo.com/video/TU_VIDEO_ID"
-                     title="Sonico en acción" allowfullscreen
-                     style="width:100%;height:100%;border:none;"></iframe>        -->
-        <div class="preview-video">
-          <div class="video-placeholder">
-            <div class="play-btn">▶</div>
-            <p>Vídeo demo de Sonico<br>
-              <span style="font-size:12px;opacity:0.6">
-                Sustituye este bloque por un iframe de YouTube o Vimeo
-              </span>
-            </p>
-          </div>
-          <span class="preview-label">Demo · Lección de Piano</span>
-        </div>
-
-        <!-- CAPTURAS DE PANTALLA
-             Cuando tengas las imágenes, sustituye cada div.img-placeholder por:
-             <img src="ruta/captura.png" alt="descripción de la captura" />            -->
-        <div class="preview-images">
-          <div class="preview-img">
-            <div class="img-placeholder">
-              <span>🎵</span>
-              <p>Captura · Panel de lecciones</p>
-            </div>
-            <span class="preview-label">Aprendizaje · IA</span>
-          </div>
-          <div class="preview-img">
-            <div class="img-placeholder">
-              <span>👤</span>
-              <p>Captura · Perfil de artista</p>
-            </div>
-            <span class="preview-label">Tu perfil · Empleo</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIOS -->
-  <section class="section section-alt" id="testimonios">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="tag">Voces del proyecto</span>
-        <h2>Lo que dicen los primeros<br>en conocer Sonico</h2>
-        <p>Estamos en beta, pero ya hay músicos, profesores y profesionales del sector que han visto de qué va esto.</p>
-      </div>
-      <div class="testimonials-grid">
-        <!-- Sustituye estas citas por comentarios reales cuando los tengas -->
-        <div class="testimonial reveal">
-          <p class="testimonial-quote">"Por fin una plataforma que entiende que aprender música no es solo ver tutoriales. La parte de networking y empleo es lo que más me interesa como guitarrista freelance."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">A</div>
-            <div>
-              <div class="author-name">Nombre · Sustituir</div>
-              <div class="author-role">Guitarrista, usuario beta</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial reveal" style="transition-delay:0.1s">
-          <p class="testimonial-quote">"Como profesora de conservatorio, lo que más me llama es poder usar Sonico de apoyo para mis clases. Tener todo en una herramienta que mis alumnos ya usan sería un cambio enorme."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">M</div>
-            <div>
-              <div class="author-name">Nombre · Sustituir</div>
-              <div class="author-role">Profesora de piano, conservatorio</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial reveal" style="transition-delay:0.2s">
-          <p class="testimonial-quote">"El perfil de artista es la idea que más me gusta. Los músicos necesitamos un LinkedIn que entienda lo que hacemos, y Sonico va exactamente en esa dirección."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">C</div>
-            <div>
-              <div class="author-name">Nombre · Sustituir</div>
-              <div class="author-role">Músico de sesión</div>
-            </div>
           </div>
         </div>
       </div>
