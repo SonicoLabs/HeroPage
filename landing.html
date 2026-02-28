@@ -219,6 +219,8 @@
       transition: border-color 0.3s, transform 0.3s;
     }
     .feature-card:hover { border-color: rgba(124, 77, 255, 0.45); transform: translateY(-4px); }
+    .feature-card.purple-hover:hover { box-shadow: 0 0 25px var(--color-main); border-color: var(--color-border);  transform: translateY(-4px); }
+    .feature-card.blue-hover:hover { box-shadow: 0 0 25px var(--color-secondary); border-color: var(--color-border);  transform: translateY(-4px); }
     .feature-card h3 { font-family: var(--font-display); font-size: 20px; font-weight: 700; margin-bottom: 10px; }
     .feature-card p { color: var(--color-muted); font-size: 15px; }
     
@@ -408,33 +410,27 @@
         <p>Aprender música siempre ha sido caro, fragmentado y difícil de convertir en carrera. Sonico lo cambia: centraliza el aprendizaje, el networking y las oportunidades profesionales en un único lugar accesible para todos.</p>
       </div>
       <div class="features-grid">
-        <div class="feature-card reveal">
-          <div class="feature-icon">🎓</div>
+        <div class="feature-card reveal blue-hover">
           <h3>Aprende a tu medida</h3>
           <p>Lecciones de teoría musical e instrumento generadas y ajustadas por IA según tu nivel, ritmo y objetivos. Tanto si nunca has tocado una nota como si llevas años practicando.</p>
         </div>
-        <div class="feature-card reveal" style="transition-delay:0.1s">
-          <div class="feature-icon">🎭</div>
+        <div class="feature-card reveal purple-hover" style="transition-delay:0.1s">
           <h3>Tu perfil de artista</h3>
           <p>La plataforma construye automáticamente tu perfil musical a partir de tu progreso. Un CV artístico vivo, siempre actualizado, que puedes presentar para abrirte puertas profesionales.</p>
         </div>
-        <div class="feature-card reveal" style="transition-delay:0.2s">
-          <div class="feature-icon">🎸</div>
+        <div class="feature-card reveal blue-hover" style="transition-delay:0.2s">
           <h3>Networking y bandas</h3>
           <p>Encuentra músicos que estudian los mismos géneros o instrumentos compatibles con el tuyo. Forma grupos, colabora en proyectos y construye tu red desde la plataforma.</p>
         </div>
-        <div class="feature-card reveal" style="transition-delay:0.3s">
-          <div class="feature-icon">💼</div>
+        <div class="feature-card reveal purple-hover" style="transition-delay:0.3s">
           <h3>Oportunidades de empleo</h3>
           <p>Accede a nuestro foro de empleo musical donde proyectos y salas buscan músicos. Aplica directamente con tu perfil de Sonico. Esta sección ya está disponible en la versión piloto.</p>
         </div>
-        <div class="feature-card reveal" style="transition-delay:0.1s">
-          <div class="feature-icon">🏫</div>
+        <div class="feature-card reveal blue-hover" style="transition-delay:0.1s">
           <h3>Para profesores también</h3>
           <p>Si enseñas, Sonico es tu herramienta: crea cursos, prepara tus clases del conservatorio y mentoriza alumnos. La calidad docente, sin barreras ni burocracia.</p>
         </div>
-        <div class="feature-card reveal" style="transition-delay:0.2s">
-          <div class="feature-icon">🌍</div>
+        <div class="feature-card reveal purple-hover" style="transition-delay:0.2s">
           <h3>Visión a largo plazo</h3>
           <p>Desde el autodidacta curioso hasta el aula de un conservatorio. Sonico quiere estar en cada etapa del músico, apoyando tanto el aprendizaje informal como los estudios reglados.</p>
         </div>
