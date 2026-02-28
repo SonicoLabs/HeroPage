@@ -34,3 +34,23 @@ document.querySelectorAll('.faq-question').forEach(btn => {
         if (!wasOpen) item.classList.add('open');
     });
 });
+
+// Image dialog
+const dialog = document.getElementById('image-viewer');
+const modalImg = document.getElementById('modal-img');
+const closeBtn = document.getElementById('close-modal');
+
+// Seleccionamos todas las imágenes dentro de los contenedores
+document.querySelectorAll('.preview-img img').forEach(img => {
+    img.addEventListener('click', () => {
+        modalImg.src = img.src; // Copia la ruta de la imagen
+        dialog.showModal();     // Abre el modal nativo
+    });
+});
+
+// Cerrar al hacer click en el botón o fuera de la imagen
+dialog.addEventListener('click', (e) => {
+    if (e.target === dialog) dialog.close();
+});
+
+closeBtn.addEventListener('click', () => dialog.close());
