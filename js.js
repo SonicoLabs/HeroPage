@@ -4,14 +4,19 @@ window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
 });
 
-// Hamburger
+// Hamburger toggle
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
-const mobileClose = document.getElementById('mobileClose');
-hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
-mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+function toggleMenu(force) {
+    const open = force !== undefined ? force : !mobileMenu.classList.contains('open');
+    mobileMenu.classList.toggle('open', open);
+    hamburger.classList.toggle('open', open);   // activa la animación → X
+}
+hamburger.addEventListener('click', () => toggleMenu());
+
+// Cerrar al pulsar cualquier enlace del menú
 document.querySelectorAll('.mobile-link, .mobile-menu .btn').forEach(el => {
-    el.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    el.addEventListener('click', () => toggleMenu(false));
 });
 
 // Reveal on scroll
