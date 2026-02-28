@@ -1,568 +1,1292 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sonico — La plataforma para músicos</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sonico — La plataforma para músicos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+          rel="stylesheet"/>
 
-  <style>
-    /* =====================================================
-       VARIABLES
-    ===================================================== */
-    :root {
-      --color-bg:        #0b0c0e;
-      --color-surface:   #13151a;
-      --color-border:    rgba(255,255,255,0.07);
-      --color-main:      #7c4dff;
-      --color-secondary: #3dffcf;
-      --color-text:      #f0f0ec;
-      --color-muted:     rgba(240,240,236,0.45);
-      --font-display:    'Syne', sans-serif;
-      --font-body:       'DM Sans', sans-serif;
-      --max-w:           1140px;
-      --radius:          16px;
-    }
+    <style>
+        /* =====================================================
+           VARIABLES
+        ===================================================== */
+        :root {
+            --color-bg: #0b0c0e;
+            --color-surface: #13151a;
+            --color-border: rgba(255, 255, 255, 0.07);
+            --color-main: #7c4dff;
+            --color-secondary: #3dffcf;
+            --color-text: #f0f0ec;
+            --color-muted: rgba(240, 240, 236, 0.45);
+            --font-display: 'Syne', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+            --max-w: 1140px;
+            --radius: 16px;
+        }
 
-    /* =====================================================
-       RESET Y BASE
-    ===================================================== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--color-bg);
-      color: var(--color-text);
-      font-family: var(--font-body);
-      font-size: 17px;
-      line-height: 1.65;
-      overflow-x: hidden;
-    }
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+        /* =====================================================
+           RESET Y BASE
+        ===================================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    /* =====================================================
-       UTILIDADES
-    ===================================================== */
-    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; }
-    .tag {
-      display: inline-block;
-      font-family: var(--font-display);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--color-main);
-      border: 1px solid var(--color-main);
-      border-radius: 40px;
-      padding: 5px 16px;
-      margin-bottom: 20px;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 15px;
-      padding: 14px 28px;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      border: none;
-    }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary {
-      background: var(--color-main);
-      color: #f0f0ec;
-      box-shadow: 0 0 32px rgba(124, 77, 255, 0.35);
-    }
-    .btn-primary:hover { box-shadow: 0 0 48px rgba(124, 77, 255, 0.55); }
-    .btn-outline {
-      background: transparent;
-      color: var(--color-text);
-      border: 1px solid var(--color-border);
-    }
-    .btn-outline:hover { border-color: rgba(255,255,255,0.3); }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    /* =====================================================
-       FONDO
-    ===================================================== */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.5;
-    }
-    .blob { position: fixed; border-radius: 50%; filter: blur(120px); opacity: 0.12; pointer-events: none; z-index: 0; }
-    .blob-1 { width: 600px; height: 600px; background: var(--color-main); top: -200px; left: -200px; }
-    .blob-2 { width: 500px; height: 500px; background: var(--color-secondary); bottom: -150px; right: -150px; }
+        body {
+            background: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
 
-    /* =====================================================
-       NAV
-    ===================================================== */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 100; padding: 20px 0;
-      transition: background 0.4s, padding 0.4s;
-    }
-    nav.scrolled {
-      background: rgba(11,12,14,0.88);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--color-border);
-      padding: 14px 0;
-    }
-    nav .container { display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: -0.5px; }
-    .nav-logo span { color: var(--color-main); }
-    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
-    .nav-links a { font-size: 14px; font-weight: 500; color: var(--color-muted); transition: color 0.2s; }
-    .nav-links a:hover { color: var(--color-text); }
-    .nav-cta { font-size: 14px !important; padding: 10px 22px !important; }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .hamburger span { width: 24px; height: 2px; background: var(--color-text); border-radius: 2px; }
-    .mobile-menu {
-      display: none; position: fixed; inset: 0; background: var(--color-bg);
-      z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 36px;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a { font-family: var(--font-display); font-size: 28px; font-weight: 700; }
-    .mobile-close { position: absolute; top: 24px; right: 28px; font-size: 30px; cursor: pointer; color: var(--color-muted); }
+        img {
+            max-width: 100%;
+            display: block;
+        }
 
-    /* =====================================================
-       HERO
-    ===================================================== */
-    .hero {
-      position: relative; min-height: 100vh;
-      display: flex; align-items: center;
-      padding: 140px 0 100px; z-index: 1;
-    }
-    .hero-inner { max-width: 860px; }
-    .hero-eyebrow { margin-bottom: 28px; }
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(46px, 7vw, 86px);
-      font-weight: 800; line-height: 1.05;
-      letter-spacing: -2px; margin-bottom: 28px;
-    }
-    .hero h1 em { font-style: normal; color: var(--color-main); }
-    .hero-sub {
-      font-size: clamp(17px, 2vw, 20px);
-      color: var(--color-muted); max-width: 580px;
-      margin-bottom: 44px; font-weight: 300;
-    }
-    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-    .hero-scroll {
-      margin-top: 100px; display: flex; align-items: center;
-      gap: 12px; color: var(--color-muted); font-size: 13px; letter-spacing: 0.06em;
-    }
-    .scroll-line { width: 40px; height: 1px; background: var(--color-muted); }
-    .hero-number {
-      position: absolute; right: -20px; top: 50%;
-      transform: translateY(-50%);
-      font-family: var(--font-display);
-      font-size: clamp(180px, 22vw, 320px);
-      font-weight: 800;
-      color: rgba(124, 77, 255, 0.05);
-      line-height: 1; user-select: none; pointer-events: none;
-    }
+        /* =====================================================
+           UTILIDADES
+        ===================================================== */
+        .container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0 28px;
+        }
 
-    /* =====================================================
-       SECCIONES BASE
-    ===================================================== */
-    .section { position: relative; z-index: 1; padding: 100px 0; }
-    .section-alt {
-      background: var(--color-surface);
-      border-top: 1px solid var(--color-border);
-      border-bottom: 1px solid var(--color-border);
-    }
-    .section-header { margin-bottom: 64px; }
-    .section-header h2 {
-      font-family: var(--font-display);
-      font-size: clamp(34px, 5vw, 58px);
-      font-weight: 800; letter-spacing: -1.5px; line-height: 1.1;
-    }
-    .section-header p {
-      margin-top: 16px; color: var(--color-muted);
-      max-width: 540px; font-weight: 300; font-size: 18px;
-    }
+        .tag {
+            display: inline-block;
+            font-family: var(--font-display);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-main);
+            border: 1px solid var(--color-main);
+            border-radius: 40px;
+            padding: 5px 16px;
+            margin-bottom: 20px;
+        }
 
-    /* =====================================================
-       ESTADÍSTICAS
-    ===================================================== */
-    .stats-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1px; border: 1px solid var(--color-border);
-      border-radius: var(--radius); overflow: hidden; background: var(--color-border);
-    }
-    .stat-item { background: var(--color-surface); padding: 48px 36px; text-align: center; }
-    .stat-num {
-      font-family: var(--font-display);
-      font-size: clamp(42px, 6vw, 64px);
-      font-weight: 800; color: var(--color-main);
-      letter-spacing: -2px; line-height: 1; margin-bottom: 8px;
-    }
-    .stat-label { color: var(--color-muted); font-size: 15px; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 15px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+        }
 
-    /* =====================================================
-       FEATURE CARDS
-    ===================================================== */
-    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-    .feature-card {
-      background: var(--color-surface); border: 1px solid var(--color-border);
-      border-radius: var(--radius); padding: 36px 32px;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-    .feature-card:hover { border-color: rgba(124, 77, 255, 0.45); transform: translateY(-4px); }
-    .feature-card.purple-hover:hover { box-shadow: 0 0 25px var(--color-main); border-color: var(--color-border);  transform: translateY(-4px); }
-    .feature-card.blue-hover:hover { box-shadow: 0 0 25px var(--color-secondary); border-color: var(--color-border);  transform: translateY(-4px); }
-    .feature-card h3 { font-family: var(--font-display); font-size: 20px; font-weight: 700; margin-bottom: 10px; }
-    .feature-card p { color: var(--color-muted); font-size: 15px; }
-    
-    /* =====================================================
-       PASOS
-    ===================================================== */
-    .steps { display: flex; flex-direction: column; }
-    .step {
-      display: grid; grid-template-columns: 60px 1fr;
-      gap: 32px; padding: 40px 0;
-      border-bottom: 1px solid var(--color-border); align-items: start;
-    }
-    .step:last-child { border-bottom: none; }
-    .step-num {
-      font-family: var(--font-display); font-size: 13px;
-      font-weight: 700; color: var(--color-main);
-      letter-spacing: 0.1em; padding-top: 4px;
-    }
-    .step-content h3 { font-family: var(--font-display); font-size: 22px; font-weight: 700; margin-bottom: 10px; }
-    .step-content p { color: var(--color-muted); font-size: 16px; }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
 
-    /* =====================================================
-       FAQ
-    ===================================================== */
-    .faq-list { max-width: 720px; }
-    .faq-item { border-bottom: 1px solid var(--color-border); padding: 24px 0; }
-    .faq-question { display: flex; justify-content: space-between; align-items: center; cursor: pointer; gap: 20px; }
-    .faq-question h3 { font-family: var(--font-display); font-size: 17px; font-weight: 600; }
-    .faq-icon {
-      width: 28px; height: 28px; border-radius: 50%;
-      border: 1px solid var(--color-border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; color: var(--color-main); flex-shrink: 0; transition: transform 0.3s;
-    }
-    .faq-item.open .faq-icon { transform: rotate(45deg); }
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
-    .faq-item.open .faq-answer { max-height: 300px; padding-top: 14px; }
-    .faq-answer p { color: var(--color-muted); font-size: 15px; line-height: 1.7; }
+        .btn-primary {
+            background: var(--color-main);
+            color: #f0f0ec;
+            box-shadow: 0 0 32px rgba(124, 77, 255, 0.35);
+        }
 
-    /* =====================================================
-       CTA FINAL
-    ===================================================== */
-    .cta-section { position: relative; z-index: 1; padding: 80px 0 120px; }
-    .cta-box {
-      background: var(--color-surface); border: 1px solid var(--color-border);
-      border-radius: 24px; padding: clamp(48px, 8vw, 96px);
-      text-align: center; position: relative; overflow: hidden;
-    }
-    .cta-box::before {
-      content: ''; position: absolute; top: -100px; left: 50%;
-      transform: translateX(-50%); width: 400px; height: 400px;
-      border-radius: 50%; background: var(--color-main); opacity: 0.06;
-      filter: blur(80px); pointer-events: none;
-    }
-    .cta-box h2 {
-      font-family: var(--font-display); font-size: clamp(32px, 5vw, 58px);
-      font-weight: 800; letter-spacing: -1.5px; margin-bottom: 18px;
-    }
-    .cta-box p { color: var(--color-muted); font-size: 18px; max-width: 500px; margin: 0 auto 40px; font-weight: 300; }
-    .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .btn-primary:hover {
+            box-shadow: 0 0 48px rgba(124, 77, 255, 0.55);
+        }
 
-    /* =====================================================
-       FOOTER
-    ===================================================== */
-    footer { position: relative; z-index: 1; border-top: 1px solid var(--color-border); padding: 40px 0; }
-    footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-    .footer-logo { font-family: var(--font-display); font-weight: 800; font-size: 18px; }
-    .footer-logo span { color: var(--color-main); }
-    .footer-links { display: flex; gap: 28px; }
-    .footer-links a { color: var(--color-muted); font-size: 13px; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--color-text); }
-    .footer-copy { color: var(--color-muted); font-size: 13px; }
+        .btn-outline {
+            background: transparent;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
 
-    /* =====================================================
-       ANIMACIONES
-    ===================================================== */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+        .btn-outline:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+        }
 
-    /* =====================================================
-       RESPONSIVE
-    ===================================================== */
-    @media (max-width: 900px) {
-      .preview-layout { grid-template-columns: 1fr; }
-      .preview-images { grid-template-rows: unset; grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      .hero-number { display: none; }
-      .hero { padding: 120px 0 80px; }
-      .step { grid-template-columns: 40px 1fr; gap: 20px; }
-      footer .container { flex-direction: column; text-align: center; }
-      .faq-layout { grid-template-columns: 1fr !important; gap: 40px !important; }
-      .preview-images { grid-template-columns: 1fr; }
-    }
-  </style>
+        /* =====================================================
+           FONDO
+        ===================================================== */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--color-main);
+            top: -200px;
+            left: -200px;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--color-secondary);
+            bottom: -150px;
+            right: -150px;
+        }
+
+        /* =====================================================
+           NAV
+        ===================================================== */
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 30px;
+            padding: 4px;
+        }
+
+        .lang-btn {
+            font-family: var(--font-display);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            padding: 5px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: var(--color-muted);
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .lang-btn.active {
+            background: var(--color-main);
+            color: #fff;
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: var(--color-text);
+        }
+
+        /* =====================================================
+           NAV
+        ===================================================== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            transition: background 0.4s, padding 0.4s;
+        }
+
+        nav.scrolled {
+            background: rgba(11, 12, 14, 0.88);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--color-border);
+            padding: 14px 0;
+        }
+
+        nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 22px;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-logo span {
+            color: var(--color-main);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-muted);
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-text);
+        }
+
+        .nav-cta {
+            font-size: 14px !important;
+            padding: 10px 22px !important;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--color-text);
+            border-radius: 2px;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--color-bg);
+            z-index: 99;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 36px;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .mobile-close {
+            position: absolute;
+            top: 24px;
+            right: 28px;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--color-muted);
+        }
+
+        .mobile-lang {
+            display: flex;
+            gap: 8px;
+        }
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 140px 0 100px;
+            z-index: 1;
+        }
+
+        .hero-inner {
+            max-width: 860px;
+        }
+
+        .hero-eyebrow {
+            margin-bottom: 28px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(46px, 7vw, 86px);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--color-main);
+        }
+
+        .hero-sub {
+            font-size: clamp(17px, 2vw, 20px);
+            color: var(--color-muted);
+            max-width: 580px;
+            margin-bottom: 44px;
+            font-weight: 300;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .hero-scroll {
+            margin-top: 100px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--color-muted);
+            font-size: 13px;
+            letter-spacing: 0.06em;
+        }
+
+        .scroll-line {
+            width: 40px;
+            height: 1px;
+            background: var(--color-muted);
+        }
+
+        .hero-number {
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: var(--font-display);
+            font-size: clamp(180px, 22vw, 320px);
+            font-weight: 800;
+            color: rgba(124, 77, 255, 0.05);
+            line-height: 1;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        /* =====================================================
+           SECCIONES BASE
+        ===================================================== */
+        .section {
+            position: relative;
+            z-index: 1;
+            padding: 100px 0;
+        }
+
+        .section-alt {
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .section-header {
+            margin-bottom: 64px;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-display);
+            font-size: clamp(34px, 5vw, 58px);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+        }
+
+        .section-header p {
+            margin-top: 16px;
+            color: var(--color-muted);
+            max-width: 540px;
+            font-weight: 300;
+            font-size: 18px;
+        }
+
+        /* =====================================================
+           ESTADÍSTICAS
+        ===================================================== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--color-border);
+        }
+
+        .stat-item {
+            background: var(--color-surface);
+            padding: 48px 36px;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: var(--font-display);
+            font-size: clamp(42px, 6vw, 64px);
+            font-weight: 800;
+            color: var(--color-main);
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: var(--color-muted);
+            font-size: 15px;
+        }
+
+        /* =====================================================
+           FEATURE CARDS
+        ===================================================== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: 36px 32px;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(124, 77, 255, 0.45);
+            transform: translateY(-4px);
+        }
+
+        .feature-card.purple-hover:hover {
+            box-shadow: 0 0 25px var(--color-main);
+            border-color: var(--color-border);
+            transform: translateY(-4px);
+        }
+
+        .feature-card.blue-hover:hover {
+            box-shadow: 0 0 25px var(--color-secondary);
+            border-color: var(--color-border);
+            transform: translateY(-4px);
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: var(--color-muted);
+            font-size: 15px;
+        }
+
+        /* =====================================================
+           PASOS
+        ===================================================== */
+        .steps {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: 32px;
+            padding: 40px 0;
+            border-bottom: 1px solid var(--color-border);
+            align-items: start;
+        }
+
+        .step:last-child {
+            border-bottom: none;
+        }
+
+        .step-num {
+            font-family: var(--font-display);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-main);
+            letter-spacing: 0.1em;
+            padding-top: 4px;
+        }
+
+        .step-content h3 {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .step-content p {
+            color: var(--color-muted);
+            font-size: 16px;
+        }
+
+        /* =====================================================
+           FAQ
+        ===================================================== */
+        .faq-list {
+            max-width: 720px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--color-border);
+            padding: 24px 0;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            gap: 20px;
+        }
+
+        .faq-question h3 {
+            font-family: var(--font-display);
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .faq-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--color-main);
+            flex-shrink: 0;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding-top: 14px;
+        }
+
+        .faq-answer p {
+            color: var(--color-muted);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* =====================================================
+           CTA FINAL
+        ===================================================== */
+        .cta-section {
+            position: relative;
+            z-index: 1;
+            padding: 80px 0 120px;
+        }
+
+        .cta-box {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 24px;
+            padding: clamp(48px, 8vw, 96px);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: var(--color-main);
+            opacity: 0.06;
+            filter: blur(80px);
+            pointer-events: none;
+        }
+
+        .cta-box h2 {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 5vw, 58px);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 18px;
+        }
+
+        .cta-box p {
+            color: var(--color-muted);
+            font-size: 18px;
+            max-width: 500px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+        footer {
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid var(--color-border);
+            padding: 40px 0;
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        .footer-logo span {
+            color: var(--color-main);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .footer-links a {
+            color: var(--color-muted);
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-text);
+        }
+
+        .footer-copy {
+            color: var(--color-muted);
+            font-size: 13px;
+        }
+
+        /* =====================================================
+           ANIMACIONES
+        ===================================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+        @media (max-width: 900px) {
+            .preview-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-images {
+                grid-template-rows: unset;
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-number {
+                display: none;
+            }
+
+            .hero {
+                padding: 120px 0 80px;
+            }
+
+            .step {
+                grid-template-columns: 40px 1fr;
+                gap: 20px;
+            }
+
+            footer .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .faq-layout {
+                grid-template-columns: 1fr !important;
+                gap: 40px !important;
+            }
+
+            .preview-images {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-right .lang-switcher {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
 
-  <!-- NAV -->
-  <nav id="nav">
+<!-- NAV -->
+<nav id="nav">
     <div class="container">
-      <a href="#" class="nav-logo">Sonico<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#que-es">Qué es</a></li>
-        <li><a href="#como-funciona">Cómo funciona</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contacto" class="btn btn-primary nav-cta">Únete a la beta</a></li>
-      </ul>
-      <div class="hamburger" id="hamburger" aria-label="Menú">
-        <span></span><span></span><span></span>
-      </div>
+        <a href="#" class="nav-logo">Sonico<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="#que-es" data-i18n="nav.features">Qué es</a></li>
+            <li><a href="#como-funciona" data-i18n="nav.howItWorks">Cómo funciona</a></li>
+            <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+            <li><a href="#contacto" class="btn btn-primary nav-cta" data-i18n="nav.cta">Únete a la beta</a></li>
+        </ul>
+        <div class="lang-switcher" id="langSwitcherDesktop">
+            <button class="lang-btn active" data-lang="es">ES</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <div class="hamburger" id="hamburger" aria-label="Menú">
+            <span></span><span></span><span></span>
+        </div>
     </div>
-  </nav>
+</nav>
 
-  <div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mobileMenu">
     <span class="mobile-close" id="mobileClose">✕</span>
-    <a href="#que-es" class="mobile-link">Qué es</a>
-    <a href="#como-funciona" class="mobile-link">Cómo funciona</a>
-    <a href="#faq" class="mobile-link">FAQ</a>
-    <a href="#contacto" class="btn btn-primary">Únete a la beta</a>
-  </div>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-inner">
-        <div class="hero-eyebrow reveal">
-          <span class="tag">✦ Beta abierta · 2025</span>
-        </div>
-        <h1 class="reveal" style="transition-delay:0.1s">
-          Tu carrera musical,<br>
-          <em>todo en un lugar</em>
-        </h1>
-        <p class="hero-sub reveal" style="transition-delay:0.2s">
-          Aprende a tu ritmo con lecciones adaptadas por IA, construye tu perfil de artista,
-          conecta con otros músicos y encuentra oportunidades reales para tocar.
-          Tanto si empiezas desde cero como si llevas años en los escenarios.
-        </p>
-        <div class="hero-actions reveal" style="transition-delay:0.3s">
-          <a href="#contacto" class="btn btn-primary">Unirme a la beta →</a>
-          <a href="#como-funciona" class="btn btn-outline">Ver cómo funciona</a>
-        </div>
-        <div class="hero-scroll reveal" style="transition-delay:0.5s">
-          <span class="scroll-line"></span>
-          <span>Scroll para descubrir</span>
-        </div>
-      </div>
-      <div class="hero-number" aria-hidden="true">♫</div>
+    <a href="#que-es" class="mobile-link" data-i18n="nav.features">Qué es</a>
+    <a href="#como-funciona" class="mobile-link" data-i18n="nav.howItWorks">Cómo funciona</a>
+    <a href="#faq" class="mobile-link" data-i18n="nav.faq">FAQ</a>
+    <a href="#contacto" class="btn btn-primary" data-i18n="nav.cta">Únete a la beta</a>
+    <div class="lang-switcher mobile-lang" id="langSwitcherMobile">
+        <button class="lang-btn active" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="en">EN</button>
     </div>
-  </section>
+</div>
 
-  <!-- ESTADÍSTICAS -->
-  <section class="section" id="numeros">
+<!-- HERO -->
+<section class="hero">
     <div class="container">
-      <div class="stats-grid reveal">
-        <div class="stat-item">
-          <div class="stat-num">€0</div>
-          <div class="stat-label">Coste de entrada — siempre</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">∞</div>
-          <div class="stat-label">Niveles, desde cero hasta estudios superiores</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">IA</div>
-          <div class="stat-label">Lecciones 100% adaptadas a ti</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">Una</div>
-          <div class="stat-label">Plataforma para todo el ecosistema musical</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- QUÉ ES SONICO -->
-  <section class="section" id="que-es">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="tag">La plataforma</span>
-        <h2>Un ecosistema pensado<br>para músicos de verdad</h2>
-        <p>Aprender música siempre ha sido caro, fragmentado y difícil de convertir en carrera. Sonico lo cambia: centraliza el aprendizaje, el networking y las oportunidades profesionales en un único lugar accesible para todos.</p>
-      </div>
-      <div class="features-grid">
-        <div class="feature-card reveal blue-hover">
-          <h3>Aprende a tu medida</h3>
-          <p>Lecciones de teoría musical e instrumento generadas y ajustadas por IA según tu nivel, ritmo y objetivos. Tanto si nunca has tocado una nota como si llevas años practicando.</p>
-        </div>
-        <div class="feature-card reveal purple-hover" style="transition-delay:0.1s">
-          <h3>Tu perfil de artista</h3>
-          <p>La plataforma construye automáticamente tu perfil musical a partir de tu progreso. Un CV artístico vivo, siempre actualizado, que puedes presentar para abrirte puertas profesionales.</p>
-        </div>
-        <div class="feature-card reveal blue-hover" style="transition-delay:0.2s">
-          <h3>Networking y bandas</h3>
-          <p>Encuentra músicos que estudian los mismos géneros o instrumentos compatibles con el tuyo. Forma grupos, colabora en proyectos y construye tu red desde la plataforma.</p>
-        </div>
-        <div class="feature-card reveal purple-hover" style="transition-delay:0.3s">
-          <h3>Oportunidades de empleo</h3>
-          <p>Accede a nuestro foro de empleo musical donde proyectos y salas buscan músicos. Aplica directamente con tu perfil de Sonico. Esta sección ya está disponible en la versión piloto.</p>
-        </div>
-        <div class="feature-card reveal blue-hover" style="transition-delay:0.1s">
-          <h3>Para profesores también</h3>
-          <p>Si enseñas, Sonico es tu herramienta: crea cursos, prepara tus clases del conservatorio y mentoriza alumnos. La calidad docente, sin barreras ni burocracia.</p>
-        </div>
-        <div class="feature-card reveal purple-hover" style="transition-delay:0.2s">
-          <h3>Visión a largo plazo</h3>
-          <p>Desde el autodidacta curioso hasta el aula de un conservatorio. Sonico quiere estar en cada etapa del músico, apoyando tanto el aprendizaje informal como los estudios reglados.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CÓMO FUNCIONA -->
-  <section class="section section-alt" id="como-funciona">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="tag">El proceso</span>
-        <h2>De cero a músico<br>en cuatro pasos</h2>
-        <p>Sin configuraciones complicadas, sin compromisos. Entras, te presentas un poco y Sonico hace el resto.</p>
-      </div>
-      <div class="steps">
-        <div class="step reveal">
-          <div class="step-num">01</div>
-          <div class="step-content">
-            <h3>Regístrate gratis</h3>
-            <p>Crea tu cuenta en menos de un minuto. Sin tarjeta de crédito, sin letra pequeña. Sonico es gratuito y queremos que siga siéndolo el mayor tiempo posible.</p>
-          </div>
-        </div>
-        <div class="step reveal">
-          <div class="step-num">02</div>
-          <div class="step-content">
-            <h3>Cuéntanos quién eres musicalmente</h3>
-            <p>¿Qué instrumento tocas o quieres aprender? ¿Cuánto llevas? ¿Qué quieres conseguir? Con esa información, la IA diseña tu primer camino de aprendizaje personalizado.</p>
-          </div>
-        </div>
-        <div class="step reveal">
-          <div class="step-num">03</div>
-          <div class="step-content">
-            <h3>Aprende, conecta y crece</h3>
-            <p>Sigue tus lecciones, explora el foro de empleo, busca músicos para colaborar o prepara tus clases como docente. Tu perfil de artista se va construyendo solo conforme avanzas.</p>
-          </div>
-        </div>
-        <div class="step reveal">
-          <div class="step-num">04</div>
-          <div class="step-content">
-            <h3>Encuentra tu escenario</h3>
-            <p>Cuando estés listo —o aunque creas que no lo estás aún—, usa tu perfil para aplicar a oportunidades reales. Sonico te ayuda a llegar al escenario que mereces.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="section" id="faq">
-    <div class="container">
-      <div class="faq-layout" style="display:grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;">
-        <div class="section-header reveal" style="margin-bottom:0">
-          <span class="tag">FAQ</span>
-          <h2>Preguntas<br>frecuentes</h2>
-          <p style="margin-top:16px">¿No encuentras lo que buscas? <a href="#contacto" style="color:var(--color-main)">Escríbenos</a> y te respondemos en menos de 24h.</p>
-        </div>
-        <div class="faq-list reveal">
-          <div class="faq-item">
-            <div class="faq-question">
-              <h3>¿Cuándo estará disponible para todos?</h3>
-              <div class="faq-icon">+</div>
+        <div class="hero-inner">
+            <div class="hero-eyebrow reveal">
+                <span class="tag" data-i18n="hero.tag">✦ Beta abierta · 2025</span>
             </div>
-            <div class="faq-answer"><p>Ahora mismo estamos en beta privada. Si quieres ser de los primeros en entrar, apúntate a la lista de espera desde el botón de abajo y te avisamos en cuanto abramos más plazas.</p></div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">
-              <h3>¿Es realmente gratis?</h3>
-              <div class="faq-icon">+</div>
+            <h1 class="reveal" style="transition-delay:0.1s" data-i18n-html="hero.title">
+                Tu carrera musical,<br>
+                <em>todo en un lugar</em>
+            </h1>
+            <p class="hero-sub reveal" style="transition-delay:0.2s" data-i18n="hero.sub">
+                Aprende a tu ritmo con lecciones adaptadas por IA, construye tu perfil de artista,
+                conecta con otros músicos y encuentra oportunidades reales para tocar.
+                Tanto si empiezas desde cero como si llevas años en los escenarios.
+            </p>
+            <div class="hero-actions reveal" style="transition-delay:0.3s">
+                <a href="#contacto" class="btn btn-primary" data-i18n="hero.ctaPrimary">Unirme a la beta →</a>
+                <a href="#como-funciona" class="btn btn-outline" data-i18n="hero.ctaSecondary">Ver cómo funciona</a>
             </div>
-            <div class="faq-answer"><p>Sí, el acceso a Sonico es gratuito. Estamos valorando distintos modelos para sostener el proyecto a largo plazo —donaciones, suscripciones opcionales…— pero nuestra prioridad es que la accesibilidad no se pierda nunca.</p></div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">
-              <h3>¿Para qué nivel de músico está pensado?</h3>
-              <div class="faq-icon">+</div>
+            <div class="hero-scroll reveal" style="transition-delay:0.5s">
+                <span class="scroll-line"></span>
+                <span data-i18n="hero.scroll">Scroll para descubrir</span>
             </div>
-            <div class="faq-answer"><p>Para todos los niveles. Desde alguien que nunca ha tocado un instrumento hasta un músico profesional que quiere encontrar trabajo o conectar con otros artistas. Las lecciones se adaptan gracias a la IA.</p></div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">
-              <h3>¿Puedo usarlo si soy profesor?</h3>
-              <div class="faq-icon">+</div>
-            </div>
-            <div class="faq-answer"><p>Absolutamente. Sonico tiene una vertiente específica para docentes: puedes crear tus propios cursos, mentorizar alumnos y usar la plataforma como herramienta de apoyo para tus clases en el conservatorio u otras instituciones.</p></div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">
-              <h3>¿Qué es el job forum y cuándo estará listo?</h3>
-              <div class="faq-icon">+</div>
-            </div>
-            <div class="faq-answer"><p>El foro de empleo musical es una de las partes más avanzadas del proyecto. Permite a músicos encontrar oportunidades de trabajo y a empleadores localizar talento. Ya es funcional en la versión piloto actual.</p></div>
-          </div>
         </div>
-      </div>
+        <div class="hero-number" aria-hidden="true">♫</div>
     </div>
-  </section>
+</section>
 
-  <!-- CTA FINAL -->
-  <section class="cta-section" id="contacto">
+<!-- ESTADÍSTICAS -->
+<section class="section" id="numeros">
     <div class="container">
-      <div class="cta-box reveal">
-        <span class="tag">¿Listo para entrar?</span>
-        <h2>Sé parte de Sonico<br>desde el principio</h2>
-        <p>La beta es gratuita y las plazas son limitadas. Apúntate ahora y ayúdanos a construir la plataforma que la música merece.</p>
-        <div class="cta-actions">
-          <a href="mailto:sonico.labs.236@gmail.com" class="btn btn-primary">Quiero unirme a la beta →</a>
-          <a href="#que-es" class="btn btn-outline">Saber más</a>
+        <div class="stats-grid reveal">
+            <div class="stat-item">
+                <div class="stat-num">€0</div>
+                <div class="stat-label" data-i18n="stats.free">Coste de entrada — siempre</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">∞</div>
+                <div class="stat-label" data-i18n="stats.levels">Niveles, desde cero hasta estudios superiores</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">IA</div>
+                <div class="stat-label" data-i18n="stats.ai">Lecciones 100% adaptadas a ti</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">Una</div>
+                <div class="stat-label" data-i18n="stats.platform">Plataforma para todo el ecosistema musical</div>
+            </div>
         </div>
-      </div>
     </div>
-  </section>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
+<!-- QUÉ ES SONICO -->
+<section class="section" id="que-es">
     <div class="container">
-      <div class="footer-logo">Sonico<span>.</span></div>
-      <div class="footer-links">
-        <a href="#">Privacidad</a>
-        <a href="#">Términos</a>
-        <a href="mailto:sonico.labs.236@gmail.com">sonico.labs.236@gmail.com</a>
-      </div>
-      <div class="footer-copy">© 2026 Sonico. Todos los derechos reservados.</div>
+        <div class="section-header reveal">
+            <span class="tag" data-i18n="features.tag">La plataforma</span>
+            <h2 data-i18n-html="features.title">Un ecosistema pensado<br>para músicos de verdad</h2>
+            <p data-i18n="features.subtitle">Aprender música siempre ha sido caro, fragmentado y difícil de convertir en carrera. Sonico lo cambia:
+                centraliza el aprendizaje, el networking y las oportunidades profesionales en un único lugar accesible
+                para todos.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card reveal blue-hover">
+                <h3 data-i18n="features.learn.title">Aprende a tu medida</h3>
+                <p data-i18n="features.learn.body">Lecciones de teoría musical e instrumento generadas y ajustadas por IA según tu nivel, ritmo y
+                    objetivos. Tanto si nunca has tocado una nota como si llevas años practicando.</p>
+            </div>
+            <div class="feature-card reveal purple-hover" style="transition-delay:0.1s">
+                <h3 data-i18n="features.profile.title">Tu perfil de artista</h3>
+                <p data-i18n="features.profile.body">La plataforma construye automáticamente tu perfil musical a partir de tu progreso. Un CV artístico
+                    vivo, siempre actualizado, que puedes presentar para abrirte puertas profesionales.</p>
+            </div>
+            <div class="feature-card reveal blue-hover" style="transition-delay:0.2s">
+                <h3 data-i18n="features.network.title">Networking y bandas</h3>
+                <p data-i18n="features.network.body">Encuentra músicos que estudian los mismos géneros o instrumentos compatibles con el tuyo. Forma
+                    grupos, colabora en proyectos y construye tu red desde la plataforma.</p>
+            </div>
+            <div class="feature-card reveal purple-hover" style="transition-delay:0.3s">
+                <h3 data-i18n="features.jobs.title">Oportunidades de empleo</h3>
+                <p data-i18n="features.jobs.body">Accede a nuestro foro de empleo musical donde proyectos y salas buscan músicos. Aplica directamente
+                    con tu perfil de Sonico. Esta sección ya está disponible en la versión piloto.</p>
+            </div>
+            <div class="feature-card reveal blue-hover" style="transition-delay:0.1s">
+                <h3 data-i18n="features.teachers.title">Para profesores también</h3>
+                <p data-i18n="features.teachers.body">Si enseñas, Sonico es tu herramienta: crea cursos, prepara tus clases del conservatorio y mentoriza
+                    alumnos. La calidad docente, sin barreras ni burocracia.</p>
+            </div>
+            <div class="feature-card reveal purple-hover" style="transition-delay:0.2s">
+                <h3 data-i18n="features.vision.title">Visión a largo plazo</h3>
+                <p data-i18n="features.vision.body">Desde el autodidacta curioso hasta el aula de un conservatorio. Sonico quiere estar en cada etapa del
+                    músico, apoyando tanto el aprendizaje informal como los estudios reglados.</p>
+            </div>
+        </div>
     </div>
-  </footer>
+</section>
 
-  <!-- JS -->
-  <script>
+<!-- CÓMO FUNCIONA -->
+<section class="section section-alt" id="como-funciona">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="tag" data-i18n="steps.tag">El proceso</span>
+            <h2 data-i18n-html="steps.title">De cero a músico<br>en cuatro pasos</h2>
+            <p data-i18n="steps.subtitle">Sin configuraciones complicadas, sin compromisos. Entras, te presentas un poco y Sonico hace el
+                resto.</p>
+        </div>
+        <div class="steps">
+            <div class="step reveal">
+                <div class="step-num">01</div>
+                <div class="step-content">
+                    <h3 data-i18n="steps.s1.title">Regístrate gratis</h3>
+                    <p data-i18n="steps.s1.body">Crea tu cuenta en menos de un minuto. Sin tarjeta de crédito, sin letra pequeña. Sonico es
+                        gratuito y queremos que siga siéndolo el mayor tiempo posible.</p>
+                </div>
+            </div>
+            <div class="step reveal">
+                <div class="step-num">02</div>
+                <div class="step-content">
+                    <h3 data-i18n="steps.s2.title">Cuéntanos quién eres musicalmente</h3>
+                    <p data-i18n="steps.s2.body">¿Qué instrumento tocas o quieres aprender? ¿Cuánto llevas? ¿Qué quieres conseguir? Con esa
+                        información, la IA diseña tu primer camino de aprendizaje personalizado.</p>
+                </div>
+            </div>
+            <div class="step reveal">
+                <div class="step-num">03</div>
+                <div class="step-content">
+                    <h3 data-i18n="steps.s3.title">Aprende, conecta y crece</h3>
+                    <p data-i18n="steps.s3.body">Sigue tus lecciones, explora el foro de empleo, busca músicos para colaborar o prepara tus clases
+                        como docente. Tu perfil de artista se va construyendo solo conforme avanzas.</p>
+                </div>
+            </div>
+            <div class="step reveal">
+                <div class="step-num">04</div>
+                <div class="step-content">
+                    <h3 data-i18n="steps.s4.title">Encuentra tu escenario</h3>
+                    <p data-i18n="steps.s4.body">Cuando estés listo —o aunque creas que no lo estás aún—, usa tu perfil para aplicar a
+                        oportunidades reales. Sonico te ayuda a llegar al escenario que mereces.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+    <div class="container">
+        <div class="faq-layout" style="display:grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;">
+            <div class="section-header reveal" style="margin-bottom:0">
+                <span class="tag" data-i18n="faq.tag">FAQ</span>
+                <h2 data-i18n-html="faq.title">Preguntas<br>frecuentes</h2>
+                <p style="margin-top:16px">
+                    <span data-i18n="faq.contact.pre">¿No encuentras lo que buscas?</span> 
+                    <a href="#contacto" style="color:var(--color-main)" data-i18n="faq.contact.link">Escríbenos</a>
+                    <span data-i18n="faq.contact.post">y te respondemos en menos de 24h.</span>
+                </p>
+            </div>
+            <div class="faq-list reveal">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-i18n="faq.q1.q">¿Cuándo estará disponible para todos?</h3>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer"><p data-i18n="faq.q1.a">Ahora mismo estamos en beta privada. Si quieres ser de los primeros en
+                        entrar, apúntate a la lista de espera desde el botón de abajo y te avisamos en cuanto abramos
+                        más plazas.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-i18n="faq.q2.q">¿Es realmente gratis?</h3>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer"><p data-i18n="faq.q2.a">Sí, el acceso a Sonico es gratuito. Estamos valorando distintos modelos
+                        para sostener el proyecto a largo plazo —donaciones, suscripciones opcionales…— pero nuestra
+                        prioridad es que la accesibilidad no se pierda nunca.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-i18n="faq.q3.q">¿Para qué nivel de músico está pensado?</h3>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer"><p data-i18n="faq.q3.a">Para todos los niveles. Desde alguien que nunca ha tocado un instrumento
+                        hasta un músico profesional que quiere encontrar trabajo o conectar con otros artistas. Las
+                        lecciones se adaptan gracias a la IA.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-i18n="faq.q4.q">¿Puedo usarlo si soy profesor?</h3>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer"><p data-i18n="faq.q4.a">Absolutamente. Sonico tiene una vertiente específica para docentes:
+                        puedes crear tus propios cursos, mentorizar alumnos y usar la plataforma como herramienta de
+                        apoyo para tus clases en el conservatorio u otras instituciones.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Qué es el job forum y cuándo estará listo?</h3>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer"><p data-i18n="faq.q5.a">El foro de empleo musical es una de las partes más avanzadas del
+                        proyecto. Permite a músicos encontrar oportunidades de trabajo y a empleadores localizar
+                        talento. Ya es funcional en la versión piloto actual.</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section" id="contacto">
+    <div class="container">
+        <div class="cta-box reveal">
+            <span class="tag" data-i18n="cta.tag">¿Listo para entrar?</span>
+            <h2 data-i18n-html="cta.title">Sé parte de Sonico<br>desde el principio</h2>
+            <p data-i18n="cta.sub">La beta es gratuita y las plazas son limitadas. Apúntate ahora y ayúdanos a construir la plataforma que
+                la música merece.</p>
+            <div class="cta-actions">
+                <a href="mailto:sonico.labs.236@gmail.com" class="btn btn-primary" data-i18n="cta.primary">Quiero unirme a la beta →</a>
+                <a href="#que-es" class="btn btn-outline" data-i18n="cta.secondary">Saber más</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="footer-logo">Sonico<span>.</span></div>
+        <div class="footer-links">
+            <a href="#" data-i18n="footer.privacy">Privacidad</a>
+            <a href="#" data-i18n="footer.terms">Términos</a>
+            <a href="mailto:sonico.labs.236@gmail.com">sonico.labs.236@gmail.com</a>
+        </div>
+        <div class="footer-copy">© 2026 Sonico. Todos los derechos reservados.</div>
+    </div>
+</footer>
+<!-- =====================================================
+       TRADUCCIONES + LÓGICA i18n
+       =====================================================
+       Para añadir o editar textos, solo toca el objeto
+       `translations` de abajo. No hay que tocar el HTML.
+  ===================================================== -->
+<script>
+    // ─────────────────────────────────────────────────────
+    //  TRADUCCIONES
+    //  data-i18n       → reemplaza textContent
+    //  data-i18n-html  → reemplaza innerHTML (permite <br> y <em>)
+    // ─────────────────────────────────────────────────────
+    const translations = {
+        es: {
+            // Nav
+            "nav.features": "Qué es",
+            "nav.howItWorks": "Cómo funciona",
+            "nav.faq": "FAQ",
+            "nav.cta": "Únete a la beta",
+
+            // Hero
+            "hero.tag": "✦ Beta abierta · 2025",
+            "hero.title": "Tu carrera musical,<br><em>todo en un lugar</em>",
+            "hero.sub": "Aprende a tu ritmo con lecciones adaptadas por IA, construye tu perfil de artista, conecta con otros músicos y encuentra oportunidades reales para tocar. Tanto si empiezas desde cero como si llevas años en los escenarios.",
+            "hero.ctaPrimary": "Unirme a la beta →",
+            "hero.ctaSecondary": "Ver cómo funciona",
+            "hero.scroll": "Scroll para descubrir",
+
+            // Stats
+            "stats.free": "Coste de entrada — siempre",
+            "stats.levels": "Niveles, desde cero hasta estudios superiores",
+            "stats.ai": "Lecciones 100% adaptadas a ti",
+            "stats.platform": "Plataforma para todo el ecosistema musical",
+
+            // Features
+            "features.tag": "La plataforma",
+            "features.title": "Un ecosistema pensado<br>para músicos de verdad",
+            "features.subtitle": "Aprender música siempre ha sido caro, fragmentado y difícil de convertir en carrera. Sonico lo cambia: centraliza el aprendizaje, el networking y las oportunidades profesionales en un único lugar accesible para todos.",
+            "features.learn.title": "Aprende a tu medida",
+            "features.learn.body": "Lecciones de teoría musical e instrumento generadas y ajustadas por IA según tu nivel, ritmo y objetivos. Tanto si nunca has tocado una nota como si llevas años practicando.",
+            "features.profile.title": "Tu perfil de artista",
+            "features.profile.body": "La plataforma construye automáticamente tu perfil musical a partir de tu progreso. Un CV artístico vivo, siempre actualizado, que puedes presentar para abrirte puertas profesionales.",
+            "features.network.title": "Networking y bandas",
+            "features.network.body": "Encuentra músicos que estudian los mismos géneros o instrumentos compatibles con el tuyo. Forma grupos, colabora en proyectos y construye tu red desde la plataforma.",
+            "features.jobs.title": "Oportunidades de empleo",
+            "features.jobs.body": "Accede a nuestro foro de empleo musical donde proyectos y salas buscan músicos. Aplica directamente con tu perfil de Sonico. Esta sección ya está disponible en la versión piloto.",
+            "features.teachers.title": "Para profesores también",
+            "features.teachers.body": "Si enseñas, Sonico es tu herramienta: crea cursos, prepara tus clases del conservatorio y mentoriza alumnos. La calidad docente, sin barreras ni burocracia.",
+            "features.vision.title": "Visión a largo plazo",
+            "features.vision.body": "Desde el autodidacta curioso hasta el aula de un conservatorio. Sonico quiere estar en cada etapa del músico, apoyando tanto el aprendizaje informal como los estudios reglados.",
+
+            // Steps
+            "steps.tag": "El proceso",
+            "steps.title": "De cero a músico<br>en cuatro pasos",
+            "steps.subtitle": "Sin configuraciones complicadas, sin compromisos. Entras, te presentas un poco y Sonico hace el resto.",
+            "steps.s1.title": "Regístrate gratis",
+            "steps.s1.body": "Crea tu cuenta en menos de un minuto. Sin tarjeta de crédito, sin letra pequeña. Sonico es gratuito y queremos que siga siéndolo el mayor tiempo posible.",
+            "steps.s2.title": "Cuéntanos quién eres musicalmente",
+            "steps.s2.body": "¿Qué instrumento tocas o quieres aprender? ¿Cuánto llevas? ¿Qué quieres conseguir? Con esa información, la IA diseña tu primer camino de aprendizaje personalizado.",
+            "steps.s3.title": "Aprende, conecta y crece",
+            "steps.s3.body": "Sigue tus lecciones, explora el foro de empleo, busca músicos para colaborar o prepara tus clases como docente. Tu perfil de artista se va construyendo solo conforme avanzas.",
+            "steps.s4.title": "Encuentra tu escenario",
+            "steps.s4.body": "Cuando estés listo —o aunque creas que no lo estás aún—, usa tu perfil para aplicar a oportunidades reales. Sonico te ayuda a llegar al escenario que mereces.",
+
+            // FAQ
+            "faq.tag": "FAQ",
+            "faq.title": "Preguntas<br>frecuentes",
+            "faq.contact.pre": "¿No encuentras lo que buscas? ",
+            "faq.contact.link": "Escríbenos",
+            "faq.contact.post": " y te respondemos en menos de 24h.",
+            "faq.q1.q": "¿Cuándo estará disponible para todos?",
+            "faq.q1.a": "Ahora mismo estamos en beta privada. Si quieres ser de los primeros en entrar, apúntate a la lista de espera desde el botón de abajo y te avisamos en cuanto abramos más plazas.",
+            "faq.q2.q": "¿Es realmente gratis?",
+            "faq.q2.a": "Sí, el acceso a Sonico es gratuito. Estamos valorando distintos modelos para sostener el proyecto a largo plazo —donaciones, suscripciones opcionales…— pero nuestra prioridad es que la accesibilidad no se pierda nunca.",
+            "faq.q3.q": "¿Para qué nivel de músico está pensado?",
+            "faq.q3.a": "Para todos los niveles. Desde alguien que nunca ha tocado un instrumento hasta un músico profesional que quiere encontrar trabajo o conectar con otros artistas. Las lecciones se adaptan gracias a la IA.",
+            "faq.q4.q": "¿Puedo usarlo si soy profesor?",
+            "faq.q4.a": "Absolutamente. Sonico tiene una vertiente específica para docentes: puedes crear tus propios cursos, mentorizar alumnos y usar la plataforma como herramienta de apoyo para tus clases en el conservatorio u otras instituciones.",
+            "faq.q5.q": "¿Qué es el job forum y cuándo estará listo?",
+            "faq.q5.a": "El foro de empleo musical es una de las partes más avanzadas del proyecto. Permite a músicos encontrar oportunidades de trabajo y a empleadores localizar talento. Ya es funcional en la versión piloto actual.",
+
+            // CTA
+            "cta.tag": "¿Listo para entrar?",
+            "cta.title": "Sé parte de Sonico<br>desde el principio",
+            "cta.sub": "La beta es gratuita y las plazas son limitadas. Apúntate ahora y ayúdanos a construir la plataforma que la música merece.",
+            "cta.primary": "Quiero unirme a la beta →",
+            "cta.secondary": "Saber más",
+
+            // Footer
+            "footer.privacy": "Privacidad",
+            "footer.terms": "Términos",
+            "footer.copy": "© 2026 Sonico. Todos los derechos reservados.",
+        },
+
+        en: {
+            // Nav
+            "nav.features": "What is it",
+            "nav.howItWorks": "How it works",
+            "nav.faq": "FAQ",
+            "nav.cta": "Join the beta",
+
+            // Hero
+            "hero.tag": "✦ Open Beta · 2025",
+            "hero.title": "Your music career,<br><em>all in one place</em>",
+            "hero.sub": "Learn at your own pace with AI-powered lessons, build your artist profile, connect with fellow musicians and find real opportunities to perform — whether you're starting from scratch or have years of stage experience.",
+            "hero.ctaPrimary": "Join the beta →",
+            "hero.ctaSecondary": "See how it works",
+            "hero.scroll": "Scroll to discover",
+
+            // Stats
+            "stats.free": "Entry cost — always",
+            "stats.levels": "Levels, from beginner to superior studies",
+            "stats.ai": "100% personalised AI lessons",
+            "stats.platform": "Platform for the entire music ecosystem",
+
+            // Features
+            "features.tag": "The platform",
+            "features.title": "An ecosystem built<br>for real musicians",
+            "features.subtitle": "Learning music has always been expensive, fragmented and hard to turn into a career. Sonico changes that: it centralises learning, networking and professional opportunities in one accessible place for everyone.",
+            "features.learn.title": "Learn your way",
+            "features.learn.body": "Music theory and instrument lessons generated and adjusted by AI based on your level, pace and goals — whether you've never played a note or have been practising for years.",
+            "features.profile.title": "Your artist profile",
+            "features.profile.body": "The platform automatically builds your musical profile from your progress. A living artistic CV, always up to date, that you can use to open professional doors.",
+            "features.network.title": "Networking & bands",
+            "features.network.body": "Find musicians studying the same genres or instruments compatible with yours. Form groups, collaborate on projects and build your network from within the platform.",
+            "features.jobs.title": "Job opportunities",
+            "features.jobs.body": "Access our music job forum where projects and venues look for musicians. Apply directly with your Sonico profile. This section is already live in the pilot version.",
+            "features.teachers.title": "For teachers too",
+            "features.teachers.body": "If you teach, Sonico is your tool: create courses, prepare your conservatoire classes and mentor students. Quality teaching, without barriers or red tape.",
+            "features.vision.title": "Long-term vision",
+            "features.vision.body": "From the curious self-taught musician to a conservatoire classroom. Sonico wants to be at every stage of a musician's journey, supporting both informal learning and formal studies.",
+
+            // Steps
+            "steps.tag": "The process",
+            "steps.title": "From zero to musician<br>in four steps",
+            "steps.subtitle": "No complicated setup, no commitments. You join, introduce yourself a little and Sonico does the rest.",
+            "steps.s1.title": "Sign up for free",
+            "steps.s1.body": "Create your account in under a minute. No credit card, no fine print. Sonico is free and we want to keep it that way for as long as possible.",
+            "steps.s2.title": "Tell us who you are musically",
+            "steps.s2.body": "What instrument do you play or want to learn? How long have you been at it? What do you want to achieve? With that information, the AI designs your first personalised learning path.",
+            "steps.s3.title": "Learn, connect and grow",
+            "steps.s3.body": "Follow your lessons, browse the job forum, find musicians to collaborate with or prepare your classes as a teacher. Your artist profile builds itself as you progress.",
+            "steps.s4.title": "Find your stage",
+            "steps.s4.body": "When you're ready — or even when you think you're not — use your profile to apply for real opportunities. Sonico helps you reach the stage you deserve.",
+
+            // FAQ
+            "faq.tag": "FAQ",
+            "faq.title": "Frequently asked<br>questions",
+            "faq.contact.pre": "Can't find what you're looking for? ",
+            "faq.contact.link": "Write to us",
+            "faq.contact.post": " and we'll get back to you within 24h.",
+            "faq.q1.q": "When will it be available to everyone?",
+            "faq.q1.a": "We're currently in private beta. If you want to be among the first in, sign up to the waiting list using the button below and we'll let you know as soon as we open more spots.",
+            "faq.q2.q": "Is it really free?",
+            "faq.q2.a": "Yes, access to Sonico is free. We're evaluating different models to sustain the project long-term — donations, optional subscriptions… — but our priority is that accessibility is never lost.",
+            "faq.q3.q": "What level of musician is it designed for?",
+            "faq.q3.a": "All levels. From someone who has never touched an instrument to a professional musician looking for work or wanting to connect with other artists. Lessons adapt thanks to the AI.",
+            "faq.q4.q": "Can I use it as a teacher?",
+            "faq.q4.a": "Absolutely. Sonico has a specific side for educators: you can create your own courses, mentor students and use the platform as a support tool for your conservatoire or institution classes.",
+            "faq.q5.q": "What is the job forum and when will it be ready?",
+            "faq.q5.a": "The music job forum is one of the most advanced parts of the project. It allows musicians to find work opportunities and employers to find talent. It's already functional in the current pilot version.",
+
+            // CTA
+            "cta.tag": "Ready to join?",
+            "cta.title": "Be part of Sonico<br>from the very beginning",
+            "cta.sub": "The beta is free and spots are limited. Sign up now and help us build the platform that music deserves.",
+            "cta.primary": "I want to join the beta →",
+            "cta.secondary": "Learn more",
+
+            // Footer
+            "footer.privacy": "Privacy",
+            "footer.terms": "Terms",
+            "footer.copy": "© 2026 Sonico. All rights reserved.",
+        }
+    };
+
+    // ─────────────────────────────────────────────────────
+    //  MOTOR i18n  —  no necesitas tocar nada de aquí abajo
+    // ─────────────────────────────────────────────────────
+    function getNestedValue(obj, path) {
+        return obj[path];
+    }
+
+    function applyTranslations(lang) {
+        console.log("aplicando traducciones")
+        const t = translations[lang];
+        if (!t) return;
+
+        // textContent
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            const value = getNestedValue(t, key);
+            if (value !== undefined) el.textContent = value;
+        });
+
+        // innerHTML (para textos con <br> o <em>)
+        document.querySelectorAll('[data-i18n-html]').forEach(el => {
+            const key = el.getAttribute('data-i18n-html');
+            const value = getNestedValue(t, key);
+            if (value !== undefined) el.innerHTML = value;
+        });
+
+        // Actualiza el atributo lang del HTML (bueno para SEO y accesibilidad)
+        document.documentElement.lang = lang;
+
+        // Actualiza el título de la página
+        document.title = lang === 'es'
+            ? 'Sonico — La plataforma para músicos'
+            : 'Sonico — The platform for musicians';
+
+        // Actualiza los botones del selector
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+
+        // Guarda preferencia en localStorage
+        localStorage.setItem('sonico-lang', lang);
+    }
+
+    // Inicializar al cargar: usa localStorage si existe, si no detecta el navegador
+    function detectInitialLang() {
+        const saved = localStorage.getItem('sonico-lang');
+        if (saved && translations[saved]) return saved;
+        const browser = (navigator.language || navigator.userLanguage || 'es').slice(0, 2);
+        return translations[browser] ? browser : 'es';
+    }
+
+    // Asignar eventos a todos los botones de idioma
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => applyTranslations(btn.dataset.lang));
+    });
+
+    // Aplicar idioma inicial
+    applyTranslations(detectInitialLang());
+
     // Nav scroll
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 40);
+        nav.classList.toggle('scrolled', window.scrollY > 40);
     });
 
     // Hamburger
@@ -572,27 +1296,29 @@
     hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
     mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
     document.querySelectorAll('.mobile-link, .mobile-menu .btn').forEach(el => {
-      el.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        el.addEventListener('click', () => mobileMenu.classList.remove('open'));
     });
 
     // Reveal on scroll
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
+        entries.forEach(e => {
+            if (e.isIntersecting) e.target.classList.add('visible');
+        });
+    }, {threshold: 0.1});
     document.querySelectorAll('.reveal').forEach(el => {
-      observer.observe(el);
-      if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+        observer.observe(el);
+        if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
     });
 
     // FAQ accordion
     document.querySelectorAll('.faq-question').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.closest('.faq-item');
-        const wasOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-        if (!wasOpen) item.classList.add('open');
-      });
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.faq-item');
+            const wasOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!wasOpen) item.classList.add('open');
+        });
     });
-  </script>
+</script>
 </body>
 </html>
